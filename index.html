@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
-<body>
+<body>  
   <form class="js-validation__form">
     <fieldset>
       <legend>Contact</legend>
@@ -23,8 +23,9 @@
       <div>
         <input type="tel" placeholder="+380000000000" name="num" id="num"> 
         <label for="num">PhoneNum number</label>
-      </div>
+      </div>      
       <div>
+        <input type="button" value="cancel" name="cancel">
         <input type="submit" value="submit" name="phoneNum">       
       </div>
     </fieldset>
@@ -47,13 +48,8 @@
       <div>
         <input type="tel" placeholder="+380000000000" name="num" id="secondNum"> 
         <label for="secondNum">Phone number</label>
-      </div>
-      <div>
-        <input type="submit" value="submit" name="phoneNum">       
-      </div>
-    </fieldset>
-  </form>
-  <form class="js-validation__form">
+      </div>      
+    </fieldset>  
     <fieldset>
       <legend>Sipping</legend>
       <div>
@@ -79,13 +75,8 @@
       <div>
         <input type="checkbox" name="isBill" id="bill"> 
         <label for="bill">Bill to this address</label>
-      </div>
-      <div>
-        <input type="submit" value="submit">       
-      </div>
-    </fieldset>
-  </form>
-  <form class="js-validation__form">
+      </div>      
+    </fieldset>  
     <fieldset>
       <legend>Payment</legend>
       <div>          
@@ -103,8 +94,9 @@
       <div>
         <input name="cvc" id="cvc"> 
         <label for="cvvc">Enter CVC number</label>
-      </div>    
+      </div>
       <div>
+        <input type="button" value="cancel" name="cancel">
         <input type="submit" value="submit">       
       </div>    
     </fieldset>
