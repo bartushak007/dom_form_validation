@@ -9,7 +9,8 @@
     cardRegExp = /^\s*\d{16}\s*$/,
     endRegExp = /^\s*\d{6}\s*$/,
     zipRegExp = /^\s*\d{7}\s*$/,
-    addressRegExp = /[A-Za-z0-9'\.\-\s\,]/;
+    addressRegExp = /[A-Za-z0-9'\.\-\s\,]/,
+    res;
 
   formElem.forEach = [].forEach;
 
@@ -33,6 +34,8 @@
     elem.addEventListener('submit', function() {
       event.preventDefault();
       var target = event.target;
+      res = true;
+      var ev;
 
       while (target !== document.querySelector('form').parentNode) {
         if (target.tagName === 'FORM') {
@@ -91,11 +94,19 @@
 
           if (target.elements.confirmEmail) {
             checkField(target.elements.confirmEmail, 0, 'Error', document.getElementById('email'));
-          }         
+          }  
+
+          if (res) {            
+            ev = new CustomEvent("formIsValid");            
+            elem.dispatchEvent(ev);            
+          } else {
+            ev = new CustomEvent("formIsNotValid");            
+            elem.dispatchEvent(ev);    
+          }       
           
           return;
         }
-        target = target.parentNode;
+        target = target.parentNode;        
       }
     });
   });
@@ -113,6 +124,7 @@
     
     if (check) {        
       target.style.border = 'solid red 1px';
+      res = false;
 
       if (!target.parentNode.querySelector('.error')) {
         var addError = document.createElement('div');
