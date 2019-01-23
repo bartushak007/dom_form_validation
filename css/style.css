@@ -1,0 +1,14 @@
+ .error {
+    display: inline-block;
+    color: #e26b6b;
+    border: solid 1px #f5f1f1;
+    padding: 1px 10px;
+    border-radius: 3px;
+    background: #fbfbfb;
+  }
+
+  .element {
+    margin: 5px 0;
+  }
+
+  

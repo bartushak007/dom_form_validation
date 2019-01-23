@@ -1,6 +1,6 @@
 (function() {
   var formElem = document.querySelectorAll('.js-validation__form');
-  var fullNameRegExp = /^\s*(([а-я]|[a-z]){2,15})+\s+(([а-я]|[a-z]){2,15})+\s*$/i,
+  var fullNameRegExp = /^\s*((([а-я]|[a-z]){2,15})\s+)?(([а-я]|[a-z]){2,15})\s+([а-я]|[a-z]){2,15}\s*$/i,
     cityNameRegExp = /^\s*(([а-я]|[a-z]){2,15})+(\s+(([а-я]|[a-z]){2,15})+)?\s*$/i,
     emailRegExp = /^\s*([a-zA-Z]){2,20}[@]([a-zA-Z]){2,10}[.]([a-zA-Z]){2,5}\s*$/i,
     generalNameRegExp = /^\s*([а-я]|[a-z]){2,15}\s*$/i,    
@@ -8,25 +8,28 @@
     cvcRegExp = /^\s*\d{3}\s*$/,
     cardRegExp = /^\s*\d{16}\s*$/,
     endRegExp = /^\s*\d{6}\s*$/,
-    zipRegExp = /^\s*\d{7}\s*$/,
+    zipRegExp = /^\s*[a-z0-9]{5}\s*$/i,
     addressRegExp = /[A-Za-z0-9'\.\-\s\,]/,
-    res;
+    res = false;
 
   formElem.forEach = [].forEach;
 
   formElem.forEach(function(elem) {
     elem.addEventListener('click', function() {
-      if (event.target.tagName === 'INPUT') {
-        event.target.style.border = '';
+      var eventClick = event.target;
+      elem.noValidate = 'true';
+      
+      if (eventClick.tagName === 'INPUT') {
+        eventClick.style.outline = '';
       }
 
-      if(event.target.name === 'cancel') {
-        for(var i = document.querySelectorAll('.error').length - 1; i >= 0; i--) {
-           document.querySelectorAll('.error')[i].remove();
+      if (eventClick.name === 'cancel') {
+        for (var i = elem.querySelectorAll('.error').length - 1; i >= 0; i--) {
+           elem.querySelectorAll('.error')[i].remove();
         }
 
-        for(var j = 0; j < elem.getElementsByTagName('input').length; j++) {
-          elem.getElementsByTagName('input')[j].style.border = '';
+        for (var j = 0; j < elem.getElementsByTagName('input').length; j++) {
+          elem.getElementsByTagName('input')[j].style.outline = '';
         }
       }
     });
@@ -41,59 +44,59 @@
         if (target.tagName === 'FORM') {
           //Callfunction
           if (target.elements.fullName) {
-            checkField(target.elements.fullName, fullNameRegExp, 'Error', 0);
+            checkField(target.elements.fullName, fullNameRegExp, 'Enter your full name', 0);
           }
 
           if (target.elements.email) {
-            checkField(target.elements.email, emailRegExp, 'Error', 0);
+            checkField(target.elements.email, emailRegExp, 'Must be example@example.com', 0);
           }
 
           if (target.elements.num) {
-            checkField(target.elements.num, numRegExp, 'Error', 0);
+            checkField(target.elements.num, numRegExp, 'Type correct phone number', 0);
           }
 
           if (target.elements.firstName) {
-            checkField(target.elements.firstName, generalNameRegExp, 'Error', 0);
+            checkField(target.elements.firstName, generalNameRegExp, 'Enter your first name', 0);
           }
           
           if (target.elements.secondName) {
-            checkField(target.elements.secondName, generalNameRegExp, 'Error', 0);
+            checkField(target.elements.secondName, generalNameRegExp, 'Enter your second name', 0);
           }
 
           if (target.elements.cardNum) {
-            checkField(target.elements.cardNum, cardRegExp, 'Error', 0);
+            checkField(target.elements.cardNum, cardRegExp, 'Type your card number 14 symbols', 0);
           }
 
           if (target.elements.cvc) {
-            checkField(target.elements.cvc, cvcRegExp, 'Error', 0);
+            checkField(target.elements.cvc, cvcRegExp, 'Type your CVC number 3 symbols', 0);
           }
 
           if (target.elements.end) {
-            checkField(target.elements.end, endRegExp, 'Error', 0);
+            checkField(target.elements.end, endRegExp, 'Type your card end date', 0);
           }
 
           if (target.elements.city) {
-            checkField(target.elements.city, cityNameRegExp, 'Error', 0);
+            checkField(target.elements.city, cityNameRegExp, 'A city must contain at least 3 letters', 0);
           }
 
           if (target.elements.country) {
-            checkField(target.elements.country, generalNameRegExp, 'Error', 0);
+            checkField(target.elements.country, generalNameRegExp, 'A country must contain at least 3 letters', 0);
           }
 
           if (target.elements.state) {
-            checkField(target.elements.state, generalNameRegExp, 'Error', 0);
+            checkField(target.elements.state, generalNameRegExp, 'A state must contain at least 3 letters', 0);
           }
 
           if (target.elements.zip) {
-            checkField(target.elements.zip, zipRegExp, 'Error', 0);
+            checkField(target.elements.zip, zipRegExp, 'Type your ZIP code. 5 symbols', 0);
           }
 
           if (target.elements.address) {
-            checkField(target.elements.address, addressRegExp, 'Error', 0);
+            checkField(target.elements.address, addressRegExp, 'Type your current address', 0);
           }
 
           if (target.elements.confirmEmail) {
-            checkField(target.elements.confirmEmail, 0, 'Error', document.getElementById('email'));
+            checkField(target.elements.confirmEmail, 0, 'The email address must be the same as the e-mail above', document.getElementById('email'));
           }  
 
           if (res) {            
@@ -115,21 +118,19 @@
   function checkField(target, regExp, error, compare) {      
     var check;
 
-    if(regExp) {
+    if (regExp) {
       check = !regExp.test(target.value);
-    } else if (compare!==0 && target.value !== compare.value) { 
-      console.log(compare.value)       
+    } else if (compare !== 0 && target.value !== compare.value) {          
       check = !(target.value === compare.value);
     }
     
     if (check) {        
-      target.style.border = 'solid red 1px';
+      target.style.outline = "1px solid #e26b6b";
       res = false;
 
       if (!target.parentNode.querySelector('.error')) {
         var addError = document.createElement('div');
-        addError.innerHTML = error;
-        addError.style.color = 'red';
+        addError.innerHTML = error;        
         addError.classList.add('error');
         target.parentNode.appendChild(addError);
       } 
