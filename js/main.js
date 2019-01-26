@@ -135,7 +135,9 @@
   function checkField(target, regExp, error, compare) {           
     var check;
     
-    if (target.classList.contains('js-required') || target.value) {
+    if(compare.value === '') { 
+      check = !target.value;
+    } else  if (target.classList.contains('js-required') || target.value) {
       if (regExp) {
         check = !regExp.test(target.value);
       } else if (compare !== 0 && target.value !== compare.value) {          
