@@ -8,22 +8,34 @@
 <body>  
   <form class="js-validation__form">
     <fieldset>
-      <legend>Contact</legend>
+      <legend>Contact</legend>      
       <div class="element">        
-        <label for="fullName">Full name</label>
-        <input type="text" placeholder="Full Name" name="fullName" id="fullName"> 
+        <label for="fullName"  data-fullName='Enter your full name'>Full name</label>
+        <input type="text" placeholder="Full Name" required name="fullName" class="js-fullName js-required" id="fullName"> 
       </div>
       <div class="element">
         <label for="email">Enter email</label>
-        <input type="email" placeholder="name@example.com" name="email" id="email">        
+        <input type="email" required placeholder="name@example.com" class="js-email js-required" name="email" id="email">        
       </div>
       <div class="element">
         <label for="confirmEmail">Confirm email</label>
-        <input type="email" placeholder="name@example.com" name="confirmEmail" id="confirmEmail">        
+        <input type="email" required placeholder="name@example.com" data-confirmId="email" name="confirmEmail" class="js-confirmEmail" id="confirmEmail">        
       </div>
       <div class="element">
         <label for="num">PhoneNum number</label>
-        <input type="tel" placeholder="+380000000000" name="num" id="num">        
+        <input required type="tel" placeholder="+380000000000" name="num" id="num" class="js-number js-required">        
+      </div>
+      <div class="element">
+        <label for="test">PhoneNum number</label>
+        <input required type="text" placeholder="required only" name="test" id="test" class="js-required">        
+      </div>
+      <div class="element">
+        <label for="anotherEmail">Enter email</label>
+        <input type="email" required placeholder="name@example.com" class="js-email js-required" name="email" id="anotherEmail">        
+      </div>
+      <div class="element">
+        <label for="anotherConfirmEmail">Confirm email</label>
+        <input type="email" required placeholder="name@example.com" data-confirmId="anotherEmail" name="confirmEmail" class="js-confirmEmail" id="anotherConfirmEmail">        
       </div>      
       <div class="element">
         <input type="button" value="cancel" name="cancel">
@@ -36,42 +48,42 @@
       <legend>Contact (version 2)</legend>
       <div class="element">
         <label for="firstName">First name</label>
-        <input type="text" placeholder="first Name" name="firstName" id="firstName">        
+        <input type="text" placeholder="first Name" name="firstName" class="js-required js-firstName" id="firstName">   
       </div>
       <div class="element">        
         <label for="secondName">Second name</label>
-        <input type="text" placeholder="second Name" name="secondName" id="secondName"> 
+        <input required type="text" placeholder="second Name" name="secondName" class="js-secondName js-required" id="secondName"> 
       </div>
       <div class="element">
         <label for="secondEmail">Enter email</label>
-        <input type="email" placeholder="name@example.com" name="email" id="secondEmail">        
+        <input required type="email" placeholder="name@example.com" name="email" class="js-required js-email" id="secondEmail">  
       </div>    
       <div class="element">
         <label for="secondNum">Phone number</label>
-        <input type="tel" placeholder="+380000000000" name="num" id="secondNum">        
+        <input required type="tel" placeholder="+380000000000" name="num" class="js-number js-required" id="secondNum">        
       </div>      
     </fieldset>  
     <fieldset>
       <legend>Sipping</legend>
       <div class="element">
         <label for="address">Address</label>
-        <input type="text" placeholder="Address" name="address" id="address">        
+        <input required type="text" placeholder="Address" name="address" class="js-address js-required" id="address">        
       </div>
       <div class="element">
         <label for="city">City</label>
-        <input type="text" placeholder="New York" name="city" id="city">        
+        <input required type="text" placeholder="New York" name="city" class="js-city js-required" id="city">        
       </div>
       <div class="element">
         <label for="city">state</label>
-        <input type="text" placeholder="NY" name="state" id="state">        
+        <input required type="text" placeholder="NY" name="state" class="js-state js-required" id="state">        
       </div>
       <div class="element">
         <label for="zip">Enter zip</label>
-        <input type="text" placeholder="10011" name="zip" id="zip">        
+        <input required type="text" placeholder="10011" name="zip" class="js-required js-zip" id="zip">        
       </div>    
       <div class="element">
         <label for="Country">Country</label>
-        <input type="text" placeholder="USA" name="country" id="Country">        
+        <input required type="text" placeholder="USA" name="country" class="js-country js-required" id="Country">        
       </div>
       <div class="element">
         <label for="bill">Bill to this address</label>
@@ -82,19 +94,19 @@
       <legend>Payment</legend>
       <div class="element">
         <label for="secondFullName">Full name</label>          
-        <input type="text" placeholder="Full Name" name="fullName" id="secondFullName">              
+        <input required type="text" placeholder="Full Name" name="fullName" id="secondFullName" class="js-fullName js-required">              
       </div>
       <div class="element">
         <label for="cardNum">Enter card number</label>
-        <input type="number" name="cardNum" id="cardNum">        
+        <input required type="number" name="cardNum" class="js-cardNum js-required" id="cardNum">        
       </div> 
       <div class="element">
         <label for="end">Enter expiry</label>
-        <input name="end" id="end">        
+        <input required name="end" class="js-end js-required" id="end">        
       </div>
       <div class="element">
         <label for="cvc">Enter CVC number</label>
-        <input name="cvc" id="cvc">        
+        <input required name="cvc" class="js-cvc js-required" id="cvc">        
       </div>
       <div class="element">
         <input type="button" value="cancel" name="cancel">
