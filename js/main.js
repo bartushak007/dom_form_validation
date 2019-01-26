@@ -17,7 +17,7 @@
       var evFocus = ev.target;
 
       if (evFocus.tagName === 'INPUT') {
-        evFocus.classList.remove('errorField');;        
+        evFocus.classList.remove('errorField');        
       }
     }, true);
 
@@ -112,7 +112,7 @@
             } 
 
             if (targetElem.classList.contains('js-confirmEmail')) {              
-              var compareElementId = targetElem.getAttribute('data-confirmId')
+              var compareElementId = targetElem.getAttribute('data-confirmId');
               checkField(targetElem, 0, 'The email address must be the same as the e-mail above', document.getElementById(compareElementId));
             }   
           }     
@@ -135,7 +135,7 @@
   function checkField(target, regExp, error, compare) {           
     var check;
     
-    if(compare.value === '') { 
+    if (compare.value === '') { 
       check = !target.value;
     } else  if (target.classList.contains('js-required') || target.value) {
       if (regExp) {
