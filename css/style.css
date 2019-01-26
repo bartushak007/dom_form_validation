@@ -7,6 +7,13 @@
     background: #fbfbfb;
   }
 
+   .errorField {
+    
+    color: #e26b6b;
+    outline: solid 1px #e26b6b;
+    
+  }
+
   .element {
     margin: 5px 0;
   }

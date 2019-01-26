@@ -13,11 +13,11 @@
    res = false;  
 
   formElem.forEach(function(elem) {
-    elem.addEventListener('input', function(ev) {
+    elem.addEventListener('focus', function(ev) {
       var evFocus = ev.target;
 
-      if (evFocus.tagName === 'INPUT') {          
-        evFocus.style.outline = '';        
+      if (evFocus.tagName === 'INPUT') {
+        evFocus.classList.remove('errorField');;        
       }
     }, true);
 
@@ -25,8 +25,8 @@
       var eventClick = event.target;
       elem.noValidate = 'true';
       
-      if (eventClick.tagName === 'INPUT') {
-        eventClick.style.outline = '';
+      if (eventClick.tagName === 'INPUT') {        
+        eventClick.classList.remove('errorField');
       }
 
       if (eventClick.name === 'cancel') {
@@ -38,7 +38,7 @@
         }
 
         for (var j = 0; j < elementsInput.length; j++) {
-          elementsInput[j].style.outline = '';
+          elementsInput[j].classList.remove('errorField');
         }
       }
     });
@@ -145,7 +145,7 @@
       }      
       
       if (check) {        
-        target.style.outline = "1px solid #e26b6b";
+        target.classList.add('errorField');
         res = false;
         
         if (!target.parentNode.querySelector('.error')) {
